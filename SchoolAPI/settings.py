@@ -40,6 +40,7 @@ INSTALLED_APPS = (
 
     #Internal Apps
     'authapp.apps.AuthappConfig',
+    'school.apps.SchoolConfig',
     #Thir-party Packages
     'rest_framework',
 )
