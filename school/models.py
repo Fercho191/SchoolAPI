@@ -17,9 +17,9 @@ class School(models.Model):
 
 class Student(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    school = models.ForeignKey(
-        School, on_delete=models.CASCADE, related_name='students')
     name = models.CharField(max_length=255)
+    school = models.ForeignKey(
+        School, on_delete=models.CASCADE, related_name='students', blank=True, null=True,)
 
     class Meta:
         ordering = ('created',)
