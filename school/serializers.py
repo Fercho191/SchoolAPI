@@ -3,8 +3,9 @@ from .models import School, Student, Activity, Assignment
 
 
 class SchoolSerializer(serializers.HyperlinkedModelSerializer):
-    students = serializers.HyperlinkedRelatedField(
-        many=True, view_name='student-detail', queryset=Student.objects)
+    # students = serializers.HyperlinkedRelatedField(
+    #     many=True, view_name='student-detail', queryset=Student.objects)
+    students = serializers.PrimaryKeyRelatedField(many=True, read_only=True)
 
     class Meta:
         model = School
@@ -12,8 +13,9 @@ class SchoolSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class StudentSerializer(serializers.HyperlinkedModelSerializer):
-    school = serializers.HyperlinkedRelatedField(
-        view_name='student-detail', queryset=School.objects)
+    # school = serializers.HyperlinkedRelatedField(
+    #     view_name='student-detail', queryset=School.objects)
+    school = serializers.PrimaryKeyRelatedField(queryset=School.objects)
 
     class Meta:
         model = Student
@@ -21,8 +23,9 @@ class StudentSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class ActivitySerializer(serializers.HyperlinkedModelSerializer):
-    school = serializers.HyperlinkedRelatedField(
-        view_name='student-detail', queryset=School.objects)
+    # school = serializers.HyperlinkedRelatedField(
+    #     view_name='student-detail', queryset=School.objects)
+    school = serializers.PrimaryKeyRelatedField(queryset=School.objects)
 
     class Meta:
         model = Activity
@@ -30,10 +33,12 @@ class ActivitySerializer(serializers.HyperlinkedModelSerializer):
 
 
 class AssignmentSerializer(serializers.HyperlinkedModelSerializer):
-    activity = serializers.HyperlinkedRelatedField(
-        view_name='student-detail', queryset=Activity.objects)
-    student = serializers.HyperlinkedRelatedField(
-        view_name='student-detail', queryset=Student.objects)
+    # activity = serializers.HyperlinkedRelatedField(
+    #     view_name='student-detail', queryset=Activity.objects)
+    # student = serializers.HyperlinkedRelatedField(
+    #     view_name='student-detail', queryset=Student.objects)
+    student = serializers.PrimaryKeyRelatedField(queryset=School.objects)
+    activity = serializers.PrimaryKeyRelatedField(queryset=School.objects)
 
     class Meta:
         model = Assignment
