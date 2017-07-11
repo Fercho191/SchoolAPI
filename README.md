@@ -9,5 +9,5 @@ Primera API con Djando y Django rest Framework
 - Realizar la migracion
 	`./manage.py migrate` 
 - Correr el servidor
-	`./manage.py runserver` 
+	`./manage.py runserver 9000` 
 
